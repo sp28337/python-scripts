@@ -4,28 +4,7 @@
 
 This project contains a little bit collection of usefull scripts
 
-**Project structure**
-
-```
-scripts/
-├── patterns/
-│   │
-│   └── design_patterns/
-│
-├── algorithms/
-│   │
-│   ├──sorting/
-│   │
-│   ├── searching/
-│   │
-│   └── other/
-│
-├── utilities/
-│
-└── README.md
-```
-
-**Содержимое каталогов**
+**Directory contents**
 
 - `patterns/`: directory for storing various templates.
 
