@@ -1,5 +1,5 @@
 test.py
 .idea
 /idea
-/venv
+/.venv
 *.log
