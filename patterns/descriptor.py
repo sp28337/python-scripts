@@ -1,20 +1,36 @@
 class Integer:
+    @classmethod
+    def verify_coord(cls, coord):
+        if type(coord) is not int:
+            raise TypeError('Coordinates must be an integer')
+
     # после создания экземпляра(instance) класса Integer, автоматически срабатывает метод __set_name__
     # owner - ссылка на класс Point3D
+    def __new__(cls, *args, **kwargs):
+        print('__new__ - INTEGER')
+        return super().__new__(cls)
+
+    def __init__(self):
+        print('__init__ - INTEGER')
+
     def __set_name__(self, owner, name: str) -> None:
+        print('__set_name__')
         self.name = ''.join(('_', name))
 
     def __get__(self, instance, owner):
         # owner - ссылка на класс Point3D
         # self - ссылается на экз. класса Integer
         # instanse - ссылается на экз. класса Point3D
-        return instance.__dict__[self.name]
+        print('__get__')
+        return getattr(instance, self.name)
 
     def __set__(self, instance, value):
+        self.verify_coord(value)
         # обращаемся к словарю __dict__ (отвечает за формирование всех локальных свойств экземпляра класса)
         # self - ссылается на экз. класса Integer
         # instanse - ссылается на экз. класса Point3D
-        instance.__dict__[self.name] = value
+        print('__set__')
+        setattr(instance, self.name, value)
 
 
 class Point3D:
@@ -29,16 +45,16 @@ class Point3D:
     # self - ссылается на экз. класса Integer
     # instanse - ссылается на экз. класса Point3D
     #
+    def __new__(cls, *args, **kwargs):
+        print('__new__')
+        return super().__new__(cls)
+
     def __init__(self, x, y, z):
+        print('__init__')
         self.x = x
         self.y = y
         self.z = z
 
-    # @classmethod
-    # def verify_coord(cls, coord):
-    #     if type(coord) is not int:
-    #         raise TypeError('Coordinates must be an integer')
-    #
     # @property
     # def x(self):
     #     return self._x
@@ -68,4 +84,5 @@ class Point3D:
 
 
 p = Point3D(1, 2, 3)
-print(p.__dict__)
+print(p.__dict__, p.z)
+print(p.x)
